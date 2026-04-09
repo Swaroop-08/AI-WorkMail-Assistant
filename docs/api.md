@@ -69,6 +69,6 @@ Retrieves a list of emails sent over 24 hours ago that have received no reply.
 
 <div align="center">
 
-*Submitted to **IEEE IGNITE Hackathon 2026** — All rights reserved by ByteSquad.*
+*Submitted to **IEEE IGNITE Hackathon 2026** — All rights reserved by the respective team.*
 
 </div>
