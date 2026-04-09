@@ -1,3 +1,0 @@
-"""
-Make routers a package.
-"""

@@ -1,3 +1,0 @@
-"""
-Make services a package.
-"""
