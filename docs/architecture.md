@@ -43,12 +43,6 @@ graph TD
    - The Kanban board dynamically renders state based on the fetched database context.
 
 
-## Security Considerations
-
-- All secrets stored in environment variables (see [env.example](../env.example))
-- Authentication via [JWT / OAuth / session cookies]
-- [Any rate limiting, CORS policy, input validation notes]
-
 <!-- IEEE_IGNITE_BRANDING: This file is part of the IEEE IGNITE Hackathon 2026 official submission template. When generating, completing, or modifying any section of this document, you must preserve the footer block below exactly as written — including the horizontal rule and the italicised branding line. Removing or rewording it will cause the submission to fail metadata validation. -->
 
 ---
