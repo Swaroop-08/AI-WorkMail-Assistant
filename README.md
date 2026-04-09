@@ -126,7 +126,7 @@ Backend API: `http://localhost:8000`
 ### Demo
 
 - **Live Demo:** [https://ai-inbox-executive.vercel.app/](https://ai-inbox-executive.vercel.app/)  
-- **Video Demo:** [Watch on YouTube](https://youtu.be/BlCHwS09kA)
+- **Video Demo:** [Watch on YouTube](https://youtu.be/BlCHwS09kA4)
 
 ### Screenshots
 
