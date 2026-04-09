@@ -160,7 +160,7 @@ A custom prompt engine directs the LLM to output predictable JSON formats which 
 
 | Name    | Role                  | GitHub |
 |---------|---------------------|--------|
-| Swaroop | Full Stack Developer | [@Swaroop-08](https://github.com/Swaroop-08) |
+| Swaroop | Full Stack Developer | [@SwaroopGit](https://github.com/Swaroop-08) |
 | Mihir   | AI / ML Developer    | [@MihirGit](https://github.com/DEV-GAMEER10) |
 | Aryan   | Frontend Developer   | [@AryanGit](https://github.com/Aryan2277) |
 | Harsh   | Backend Developer    | [@HarshGit]() |
