@@ -49,6 +49,6 @@ graph TD
 
 <div align="center">
 
-*Submitted to **IEEE IGNITE Hackathon 2026** — All rights reserved by ByteSquad.*
+*Submitted to **IEEE IGNITE Hackathon 2026** — All rights reserved by the respective team.*
 
 </div>
