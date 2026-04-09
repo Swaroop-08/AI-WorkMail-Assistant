@@ -167,6 +167,12 @@ A custom prompt engine directs the LLM to output predictable JSON formats which 
 
 ---
 
+## Contact
+
+For any queries or collaboration, reach out to us at:  
+📧 **swaroop.lenka24@vit.edu**
+
+---
 ## License
 
 MIT — feel free to use this as a reference for future projects.
