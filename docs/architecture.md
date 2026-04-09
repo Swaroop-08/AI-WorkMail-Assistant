@@ -1,93 +1,47 @@
+
 # System Architecture
 
-## Overview
+> A high-level overview of how data flows through the AI Inbox Executive.
 
-[Write a 2–4 sentence summary of how the system is structured and how the major components communicate.]
+## Architecture Diagram
 
----
-
-## System Diagram
-
-```
-                        ┌──────────────┐
-                        │    User      │
-                        └──────┬───────┘
-                               │ HTTPS
-                        ┌──────▼───────┐
-                        │   Frontend   │
-                        │  (React /    │
-                        │   Next.js)   │
-                        └──────┬───────┘
-                               │ REST / GraphQL / WebSocket
-                        ┌──────▼───────┐
-                        │  Backend API │
-                        │  (Node /     │
-                        │   FastAPI)   │
-                        └──┬───────┬───┘
-                           │       │
-               ┌───────────▼─┐  ┌──▼──────────┐
-               │  Database   │  │ ML Service  │
-               │ (Postgres / │  │ (optional)  │
-               │  MongoDB)   │  └─────────────┘
-               └─────────────┘
+```mermaid
+graph TD
+    User([User]) -->|Interacts| Frontend(React + Vite)
+    Frontend -->|REST API| Backend(FastAPI)
+    
+    subgraph Backend Engine
+        Backend --> Router[API Routers]
+        Router --> Service[Business Logic Services]
+        Service --> DB[(SQLite Database)]
+        Service --> MockData(Demo Data Injector)
+    end
+    
+    subgraph External APIs
+        Service <-->|OAuth 2.0| GmailAPI(Google Workspace API)
+        Service <-->|JSON Prompts| OpenAI(GPT-4o API)
+    end
 ```
 
-> Replace the ASCII diagram above with an actual image if you have one:
-> `![Architecture](../demo/screenshots/architecture.png)`
+## Data Flow Pipeline
 
----
+1. **Ingestion:** 
+   - The user opens the dashboard. 
+   - The backend `gmail_service.py` securely authenticates via OAuth 2.0 and requests recent, unread threads from the Gmail API (or bypasses to `demo_data.py` if testing).
 
-## Components
+2. **AI Inference:**
+   - Raw email bodies are sent to `ai_service.py`.
+   - The OpenAI API evaluates the text, dynamically parsing intent (e.g., "Schedule Meeting", "Reply Required").
+   - It outputs strict JSON containing structured task arrays (priority, deadlines).
 
-### Frontend
+3. **Persistence:**
+   - Extracted tasks are validated via Pydantic constraints (`schemas.py`).
+   - The validated objects are committed to the local SQLite database (`database.py` via SQLAlchemy).
 
-- **Framework:** [e.g. Next.js 14]
-- **Responsibilities:** [UI rendering, client-side routing, state management]
-- **Communicates with:** Backend via REST API over HTTPS
+4. **Presentation:**
+   - The React frontend `api.js` queries `GET /api/tasks` and `GET /api/emails`.
+   - The Kanban board dynamically renders state based on the fetched database context.
 
-### Backend
-
-- **Framework:** [e.g. FastAPI / Express]
-- **Responsibilities:** [Business logic, authentication, data validation, DB operations]
-- **Exposes:** REST API on port 8000
-
-### Database
-
-- **Engine:** [e.g. PostgreSQL 15]
-- **Hosted on:** [e.g. Supabase / local Docker]
-- **Schema overview:** See [database.md](database.md)
-
-### ML Service *(if applicable)*
-
-- **Type:** [e.g. Inference service, embedded library]
-- **Communication:** [e.g. Internal HTTP call from backend]
-- **Model details:** See [ml-ai.md](ml-ai.md)
-
----
-
-## Data Flow
-
-### Example: User submits a form
-
-1. User fills out form on Frontend
-2. Frontend sends `POST /api/resource` with JWT in header
-3. Backend middleware validates JWT
-4. Controller calls service layer → DB query
-5. *(Optional)* ML model is invoked for prediction
-6. Response returned to Frontend
-7. UI updates with new state
-
----
-
-## Deployment
-
-| Component  | Platform         | URL / Notes                  |
-|------------|------------------|------------------------------|
-| Frontend   | [e.g. Vercel]    | `https://your-app.vercel.app` |
-| Backend    | [e.g. Railway]   | `https://api.your-app.up.railway.app` |
-| Database   | [e.g. Supabase]  | Managed PostgreSQL            |
-
----
 
 ## Security Considerations
 
