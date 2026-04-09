@@ -1,11 +1,8 @@
----
-
 # AI Inbox Executive — IEEE Ignite Hackathon
 
 > **Team Name:** ByteSquad
 > **Track / Problem Statement:** Productivity & AI Assistant
 > **Hackathon:** IEEE Ignite 2026
-
 ---
 
 ## Table of Contents
